@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+    <link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+    <title>Musikalia Itunes</title>
+
+
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
+
+    <link href="estilos/estilos.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="script/codigo.js"></script>
+
+
+</head>
+
+<body translate="no">
+    <main class="container-fluid mt-5 mb-5 ml-0 mr-0 row justify-content-center">
+
+        <!-- Cabecera y presentacion -->
+        <div class="col-xs-12 col-md-12 col-lg-8 row my_container">
+            <div class="card text-center" style="width: 100%;">
+
+                <div class="card-body">
+                    <h1 class="card-title">MUSIKALIA</h1>
+                    <p class="card-text">Bienvenido al buscador donde podrás encontar toda tu música favorita</p>
+
+                    <img src="img/cabecera.png" class="img-fluid" alt="Responsive image" />
+                </div>
+            </div>
+
+            <div class="card-footer text-muted">
+
+
+                <!-- Entrada Busqueda -->
+                <nav class="navbar navbar-dark mt-6 mb-6 ml-2" style="background-color:rgb(128, 128, 128);">
+                    <form class="form-inline" _lpchecked="1">
+                        <input type="text" placeholder="Insertar canción, disco o cantante " aria-label="Search" id="entrada" value="" class="form-control mb-2 mr-sm-4 mt-2 mt-sm-0">
+                        <button value=" Search" onclick="buscaCanciones();" type="button" class="btn btn-primary mb-2 mt-2 mt-sm-0" id="button_search">Buscar</button>
+                    </form>
+                </nav>
+            </div>
+
+        </div>
+
+        <!-- Reproductor de música -->
+        <div class="col-xs-12 col-md-12 col-lg-3 mb-4 row my_container player ">
+            <div class="col-xs-4 col-md-4 col-lg-12 player_image">
+                <audio id="audioCancion">
+                    <source id="srcSong" src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview118/v4/c2/f2/ea/c2f2ea14-ce30-3cd7-14fc-15f75ef3999f/mzaf_2856663077544297354.plus.aac.p.m4a" type="audio/mpeg">
+                </audio>
+                <img id="img_song" class="card-img-top" src="https://is2-ssl.mzstatic.com/image/thumb/Music6/v4/62/92/42/62924288-8f37-7963-4811-39e338dc16ca/source/100x100bb.jpg" alt="Card image cap">
+            </div>
+
+            <div class="col-xs-8 col-md-8 p-8 col-lg-12 player_controls">
+                <h4 id="trackName" class="card-title mt-3">Fix You</h4>
+                <div class="progress mb-3">
+                    <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <h5 id="artistName" class="card-text">Cold Play</h5>
+                <h6 id="collectionName" style="font-size: 0.8rem;">Live 2012</h6>
+
+                <div style="text-align: center;font-size: 2rem;" class="m-0 mt-4 row">
+                    <div id="iconPrevious" onclick="playPrevoius();" class="col-xs-4 col-md-4 m-0" style="width: 32%;">
+                        <i aria-hidden="true" class="fas fa-backward"></i>
+                    </div>
+                    <div id="iconPlayPause" onclick="playPause();" class="col-xs-4 col-md-4 m-0" style="width: 32%;">
+                        <i class="fas fa-play" aria-hidden="true"></i>
+                    </div>
+                    <div id="iconNext" onclick="playNext();" class="col-xs-4 col-md-4 m-0" style="width: 32%;">
+                        <i class="fas fa-forward" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Listado de busqueda -->
+        <div class="col-xs-12 col-md-12 col-lg-8 row my_container">
+            <div class="container-fluid bg-dark card row table_songs">
+
+                <table id="songsTable">
+                    <thead>
+                        <tr>
+                            <th id="thArtist">
+                                Cantante
+                                <i class="fas fa-angle-down" onclick="sortTableAZ(0)" aria-hidden="true"></i>
+                                <i class="fas fa-angle-up" onclick="sortTableZA(0)" aria-hidden="true"></i>
+                            </th>
+                            <th id="thTrack">
+                                Canción
+                                <i class="fas fa-angle-down" onclick="sortTableAZ(1)" aria-hidden="true"></i>
+                                <i class="fas fa-angle-up" onclick="sortTableZA(1)" aria-hidden="true"></i>
+                            </th>
+                            <th id="thAlbum">Disco
+                                <i class="fas fa-angle-down" onclick="sortTableAZ(2)" aria-hidden="true"></i>
+                                <i class="fas fa-angle-up" onclick="sortTableZA(2)" aria-hidden="true"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+
+
+
+        <!-- Salta una Ventana Modal cuando hay un error en la busqueda -->
+        <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-modal="true" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-light">
+                        <h5 class="modal-title" id="errorModalLabel">Ha habido algún problema...</h5>
+                        <button type="button" class="close text-light" aria-label="Close" onclick="closeModal()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modal_message">Intentelo de nuevo</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show" id="backdrop" style="display: none;"></div>
+
+
+    </main>
+
+
+</body>
+
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+
+<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+<script src='https://code.jquery.com/jquery-3.4.1.slim.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+<script src='https://kit.fontawesome.com/6b66146ce8.js'></script>
+<script id="rendered-js"></script>
+
+</html>
